@@ -1,0 +1,47 @@
+@{
+  Layout = "_Layout";
+}
+
+@model University.Models.Student
+
+<div class="jumbotron">
+  <h1>Details for @Html.DisplayFor(model => model.Name)</h1>
+</div>
+<hr />
+<div class="card">
+<h3>Name: @Html.DisplayFor(model => model.Name)</h3>
+<hr />
+<h3>Enrollment Date: @Html.DisplayFor(model => model.EnrollmentDate.Month)/@Html.DisplayFor(model => model.EnrollmentDate.Day)/@Html.DisplayFor(model => model.EnrollmentDate.Year)</h3>
+<hr />
+<h2>Courses @Html.DisplayFor(model => model.Name) is Enrolled in: </h2>
+@if (@Model.JoinEntities.Count == 0)
+{
+  <p>@Html.DisplayFor(model => model.Name) is not enrolled in any courses at the moment.</p>
+}
+else
+{
+<ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Course.CourseName</li>
+  }
+</ul>
+}
+</div>
+<hr />
+<ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    @using (Html.BeginForm("DeleteCourse", "Students"))
+    {
+      @Html.Hidden("joinId", @join.CourseStudentId)
+      <input type="submit" value="Delete from @join.Course.CourseName"/>
+    }
+  }
+</ul>
+<hr />
+<div class="card">
+<p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
+<p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
+<p>@Html.ActionLink("Add Student to Course", "AddCourse", new { id = Model.StudentId })</p>
+</div>

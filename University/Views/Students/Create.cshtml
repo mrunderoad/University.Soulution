@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@model University.Models.Student
+
+<div class="jumbotron">
+  <h1>Add A New Student Here!</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+  @Html.Label("Student Name:")
+  @Html.TextBoxFor(model => model.Name)
+  <br>
+  @Html.Label("Enrollment Date:")
+  @Html.TextBoxFor(model => model.EnrollmentDate, new { type = "date" })
+  <br>
+  @Html.Label("Select Course:")
+  @Html.DropDownList("CourseId")
+  <br>
+  <input type="submit" value="Enroll new Student" />
+}

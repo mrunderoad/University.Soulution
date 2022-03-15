@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@using University.Models;
+
+<div class="jumbotron">
+  <h1>Courses</h1>
+</div>
+
+@if (@Model.Count == 0)
+{
+  <h3>No courses have been added yet!</h3>
+}
+
+<ul>
+  @foreach (Course course in Model)
+  {
+    <li>@Html.ActionLink($"{course.CourseName}", "Details", new { id = course.CourseId })@Html.ActionLink($"{course.CourseNum}", "Details", new { id = course.CourseId })</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add new course", "Create")</p>

@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+@model University.Models.Student
+
+<div class="jumbotron">
+  <h1>Are you sure you want to delete @Html.DisplayNameFor(model => model.Name)?</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" />
+}

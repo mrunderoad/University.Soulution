@@ -1,0 +1,42 @@
+div#header {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  color:#CCC;
+  background:rgb(255, 2, 179);
+  padding:8px;
+}
+
+body {
+  background-image: url("https://wallpaperaccess.com/full/1209573.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+a {
+  color: red;
+}
+
+.jumbotron {
+  text-align: center;
+  border-radius: 25px;
+  background-image: url("https://i.pinimg.com/originals/67/18/22/671822c2f63dd5f65d8fd15c9710420b.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-shadow: 3px 3px 3px rgb(21, 255, 0);
+}
+
+#header {
+  text-align: center;
+}
+
+.card {
+  text-align: center;
+  background-color: rgba(128, 128, 128, 0.74);
+  color: rgb(0, 0, 0);
+}
+
+li {
+  list-style-position: inside;
+}

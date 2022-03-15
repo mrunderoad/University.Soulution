@@ -19,7 +19,7 @@ namespace University.Controllers
 
     public ActionResult Index()
     {
-      return View(_db.Students.ToList());
+      return View(_db.Students.OrderBy(student => student.EnrollmentDate.Year).ToList());
     }
 
     public ActionResult Create()
