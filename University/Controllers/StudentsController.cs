@@ -25,11 +25,12 @@ namespace University.Controllers
     public ActionResult Create()
     {
       ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "CourseName");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Student student, int CourseId)
+    public ActionResult Create(Student student, int CourseId, int DepartmentId)
     {
       _db.Students.Add(student);
       _db.SaveChanges();
@@ -38,6 +39,11 @@ namespace University.Controllers
         _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
         _db.SaveChanges();
       }
+      if (DepartmentId != 0)
+      {
+        _db.DepartmentStudent.Add(new DepartmentStudent() { DepartmentId = DepartmentId, StudentId = student.StudentId});
+      }
+      _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
@@ -108,6 +114,24 @@ namespace University.Controllers
       var joinEntry = _db.CourseStudent.FirstOrDefault(joinEntry => joinEntry.CourseStudentId == joinId);
       _db.CourseStudent.Remove(joinEntry);
       _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult AddDepartment(int id)
+    {
+      var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
+      return View(thisStudent);
+    }
+
+    [HttpPost]
+    public ActionResult AddDepartment(Student student, int DepartmentId)
+    {
+      if (DepartmentId != 0)
+      {
+        _db.DepartmentStudent.Add(new DepartmentStudent() { DepartmentId = DepartmentId, StudentId = student.StudentId });
+        _db.SaveChanges();
+      }
       return RedirectToAction("Index");
     }
   }

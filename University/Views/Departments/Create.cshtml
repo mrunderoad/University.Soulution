@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@model University.Models.Department
+
+<h4> Add a new Department <h4>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.DepartmentName)
+  @Html.TextBoxFor(model => model.DepartmentName)
+  <input type ="submit" value="Add new departmnent." />
+}

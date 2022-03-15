@@ -1,0 +1,42 @@
+@{
+  Layout = "_Layout";
+}
+
+@model University.Models.Department
+
+<div class="jumbotron">
+  <h1>Department Details</h1>
+</div>
+<hr />
+<h3>@Html.DisplayFor(model => model.DepartmentName)</h3>
+@if (@Model.JoinEntities1.Count == 0)
+{
+  <p>No Students in this department yet!</p>
+}
+else
+{
+  <h4>Students in this Department:</h4>
+  <ul>
+    @foreach (var departmentStudent in @Model.JoinEntities1)
+    {
+      <li>@departmentStudent.Student.Name</li> 
+    }
+  </ul>
+}
+@if (@Model.JoinEntities2.Count == 0)
+{
+  <p>No Courses in this Department yet!</p>
+}
+else
+{
+  <h4>Courses in this department</h4>
+  <ul>
+    @foreach (var join in @Model.JoinEntities2)
+    {
+      <li>@join.Course.CourseName</li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Edit Department", "Edit", new { id = Model.DepartmentId })</p>
+<p>@Html.ActionLink("Delete this Department", "Delete", new { id = Model.DepartmentId })</p>
