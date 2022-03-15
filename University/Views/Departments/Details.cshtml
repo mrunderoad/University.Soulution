@@ -23,6 +23,8 @@ else
     }
   </ul>
 }
+<hr />
+<h4>Courses in this department:</h4>
 @if (@Model.JoinEntities2.Count == 0)
 {
   <p>No Courses in this Department yet!</p>
@@ -37,6 +39,6 @@ else
     }
   </ul>
 }
-
+<hr />
 <p>@Html.ActionLink("Edit Department", "Edit", new { id = Model.DepartmentId })</p>
 <p>@Html.ActionLink("Delete this Department", "Delete", new { id = Model.DepartmentId })</p>
